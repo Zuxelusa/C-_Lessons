@@ -66,9 +66,22 @@ Console.Write("Write the numer: ");
 int x = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine($"Результат вычисления: {isMultiple(x, 7, 23)}");
 */
-
+/*
 //Напишите программу, которая принимает на вход два числа и проверяет, является ли одно число квадратом другого.
 
+bool isSquare(int num1, int num2)
+{
+    return (num1 * num1 == num2) || (num2 * num2 == num1);
+};
+
+Console.Write("Write the first number: ");
+int num1 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Write the second number: ");
+int num2 = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine($"Результат вычисления: {isSquare(num1, num2)}");
+*/
 
 
 
