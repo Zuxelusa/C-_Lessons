@@ -18,9 +18,12 @@ else
     Console.WriteLine("You inputed incorrect number. ");
     goto again;
 };
+
 */
 
 // Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+
+/*
 
 int NumberLength(int x)
 {
@@ -33,15 +36,13 @@ int NumberLength(int x)
     return count;
 };
 
-int ShowThirdDigit(int num)
+int ShowThirdDigit(int num, int order)
 {
-    //Находим третью позицию в числе любой длины из INT32
-
     int temp = Math.Abs(num), x;
 
     if (temp >= 100)
     {
-        int delitel = Convert.ToInt32(Math.Pow(10, NumberLength(temp) - 3));
+        int delitel = Convert.ToInt32(Math.Pow(10, NumberLength(temp) - order));
         x = (temp / delitel) % 10;
     }
     else
@@ -57,7 +58,7 @@ again:
 Console.Write("Input the number: ");
 int number = Convert.ToInt32(Console.ReadLine());
 
-int num = ShowThirdDigit(number);
+int num = ShowThirdDigit(number, 3);
 if (num != -1)
 {
     Console.WriteLine($"The third digit of {number} is {num}.");
@@ -67,6 +68,8 @@ else
     Console.WriteLine($"There is no third digit in number {number}. Try again!");
     goto again;
 };
+
+*/
 
 // Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
 
@@ -116,5 +119,5 @@ else
     Console.WriteLine($"Incorrect day. Try again.");
     goto again;
 };
-*/
 
+*/
