@@ -21,6 +21,22 @@ else
 */
 
 // Задача 13: Напишите программу, которая выводит третью цифру заданного числа или сообщает, что третьей цифры нет.
+
+
+
+int NumberLength(int x)
+{
+    int count = 1,  rank = 10, temp = 0;
+    while (rank <= x)
+    {
+        temp = x / rank;
+        rank *= 10;
+        count++;
+    };
+    return count;
+};
+
+Console.Write(NumberLength(15687951));
 /*
 int ShowThirdDigit(int num)
 {
@@ -33,7 +49,7 @@ Console.Write("Input the number: ");
 int number = Convert.ToInt32(Console.ReadLine());
 
 int num = ShowThirdDigit(number);
-if (num != -1) 
+if (num != -1)
 {
     Console.WriteLine($"The third digit of {number} is {num}.");
 }
