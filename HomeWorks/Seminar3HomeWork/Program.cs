@@ -49,7 +49,6 @@ Console.WriteLine($"Number {num} is {iP}palindrome.");
 // Задача 21 Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 
 /*
-
 double LengthBetweenDots(double xA, double yA, double zA, double xB, double yB, double zB)
 {
     double xCat = xB - xA;
@@ -58,28 +57,42 @@ double LengthBetweenDots(double xA, double yA, double zA, double xB, double yB, 
     return Math.Sqrt(xCat * xCat + yCat * yCat + zCat * zCat);
 }
 
+double[] DotsCoord = new double[6];
+int i = 0, Q = 2, N = 3, dotsCount = 0;
+while (dotsCount < Q)
+{
+    int coordCount = 0;
+    while (coordCount < N)
+    {
+        Console.Write($"Input {dotsCount + 1} dot coordinate {coordCount + 1}: ");
+        DotsCoord[i] = Convert.ToDouble(Console.ReadLine());
+        coordCount++;
+        i++;
+    };
+    dotsCount++;
+};
 
-Console.Write("Input X of Dot 1 coordinate: ");
-double xA = Convert.ToDouble(Console.ReadLine());
-
-Console.Write("Input Y of Dot 1 coordinate: ");
-double yA = Convert.ToDouble(Console.ReadLine());
-
-Console.Write("Input Z of Dot 1 coordinate: ");
-double zA = Convert.ToDouble(Console.ReadLine());
-
-Console.Write("Input X of Dot 2 coordinate: ");
-double xB = Convert.ToDouble(Console.ReadLine());
-
-Console.Write("Input Y of Dot 2 coordinate: ");
-double yB = Convert.ToDouble(Console.ReadLine());
-
-Console.Write("Input Z of Dot 2 coordinate: ");
-double zB = Convert.ToDouble(Console.ReadLine());
-
-double Len = LengthBetweenDots(xA, yA, zA, xB, yB, zB);
-Console.WriteLine($"Length of your line with dots coordinates ({xA}, {yA}, {zA} и {xB}, {yB}, {zB}) is: {Math.Round(Len, 2)}.");
+double Len = LengthBetweenDots(DotsCoord[0], DotsCoord[1], DotsCoord[2], DotsCoord[3], DotsCoord[4], DotsCoord[5]);
+Console.WriteLine($"Length of your line with dots coordinates ({DotsCoord[0]}, {DotsCoord[1]}, {DotsCoord[2]} и {DotsCoord[3]}, {DotsCoord[4]}, {DotsCoord[5]}) is: {Math.Round(Len, 2)}.");
 
 */
 
 // Задача 23 Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+
+void CubeTable(int N)
+{
+    int rev = 1;
+    if (N < 0) rev = -1;
+
+    int count = 0;
+    while (count <= Math.Abs(N))
+    {
+        Console.WriteLine($"Cube of {count * rev} is {Math.Pow(count * rev, 3)}. ");
+        count++;
+    }
+};
+
+Console.Write("Input number: ");
+int num = Convert.ToInt32(Console.ReadLine());
+
+CubeTable(num);
