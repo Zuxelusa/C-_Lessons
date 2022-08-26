@@ -10,8 +10,23 @@ int NumberLength(int x)
     };
     return count;
 };
+*/
 
-bool isPalindrom(int N)
+
+bool IsPalindrom(int number)
+{
+    int num = number;
+    int reversed = 0;
+    while (num > 0)
+    {
+        reversed = reversed * 10 + num % 10;
+        num /= 10;
+    } 
+    return reversed == number;
+};
+/*
+
+bool IsPalindrom(int N)
 {
     int count = 0;
 
@@ -28,13 +43,14 @@ bool isPalindrom(int N)
     }
     return true;
 };
+*/
 
 string iP;
 
 Console.Write("Input any Int32 number: ");
 int num = Convert.ToInt32(Console.ReadLine());
 
-if (isPalindrom(num))
+if (IsPalindrom(num))
 {
     iP = "";
 }
@@ -44,7 +60,7 @@ else
 };
 
 Console.WriteLine($"Number {num} is {iP}palindrome.");
-*/
+
 
 // Задача 21 Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 /*
