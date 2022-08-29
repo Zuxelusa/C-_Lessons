@@ -10,9 +10,8 @@ int NumberLength(int x)
     };
     return count;
 };
-*/
 
-
+//Вариант проверки через целое число
 bool IsPalindrom(int number)
 {
     int num = number;
@@ -24,8 +23,8 @@ bool IsPalindrom(int number)
     } 
     return reversed == number;
 };
-/*
 
+//Вариант проверки через попарное сравнение
 bool IsPalindrom(int N)
 {
     int count = 0;
@@ -43,7 +42,6 @@ bool IsPalindrom(int N)
     }
     return true;
 };
-*/
 
 string iP;
 
@@ -60,10 +58,10 @@ else
 };
 
 Console.WriteLine($"Number {num} is {iP}palindrome.");
-
-
-// Задача 21 Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+*/
 /*
+// Задача 21 Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+
 double LengthBetweenDots(double xA, double yA, double zA, double xB, double yB, double zB)
 {
     double xCat = xB - xA;
@@ -89,12 +87,10 @@ while (dotsCount < Q)
 
 double Len = LengthBetweenDots(DotsCoord[0], DotsCoord[1], DotsCoord[2], DotsCoord[3], DotsCoord[4], DotsCoord[5]);
 Console.WriteLine($"Length of your line with dots coordinates ({DotsCoord[0]}, {DotsCoord[1]}, {DotsCoord[2]} и {DotsCoord[3]}, {DotsCoord[4]}, {DotsCoord[5]}) is: {Math.Round(Len, 2)}.");
-
 */
-
 // Задача 23 Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
 
-/*
+
 void CubeTable(int N)
 {
     int rev = 1;
@@ -112,4 +108,3 @@ Console.Write("Input number: ");
 int num = Convert.ToInt32(Console.ReadLine());
 
 CubeTable(num);
-*/
