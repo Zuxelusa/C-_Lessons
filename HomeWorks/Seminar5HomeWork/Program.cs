@@ -58,7 +58,7 @@ for (int i = 0; i < arr.Length; i++)
     if (i % 2 != 0) sum += arr[i];
 }
 
-Console.Write($"The sum of elements in ODD indexes in array: [");
+Console.Write($"The sum of elements in ODD indexes of array: [");
 PrintArray(arr);
 Console.Write($"] is {sum}.");
 */
@@ -86,6 +86,7 @@ int[] arr = CreateRandomArray(N, -10, 10);
 double[] dArr = new double[arr.Length];
 double rand = 0;
 
+//Производим перевод случайного массива в DOUBLE
 for (int i = 0; i < arr.Length; i++)
 {
     rand = new Random().NextDouble();
