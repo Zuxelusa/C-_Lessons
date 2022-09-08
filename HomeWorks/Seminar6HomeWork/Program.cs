@@ -20,49 +20,13 @@ PositiveCalc();
 
 //Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
 //b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
-
+/*
 void IntersectionPoint(double k1, double b1, double k2, double b2)
 {
-    double x = (b2 - b1) / (k1 - k2);
-    double y = k1 * x + b1;
-    Console.Clear();
-    Console.Write($"Lines with your coordinates cross at point (x={x},y={y}).");
-
-    for (int i = 0; i < 20; i++)
-    {
-        y = k1 * i + b1;
-        Console.SetCursorPosition(i, Convert.ToInt32(y));
-        Console.Write("*");
-        y = k2 * i + b2;
-        Console.SetCursorPosition(i, Convert.ToInt32(y));
-        Console.Write("*");
-
-    }
+    double x = Math.Round((b2 - b1) / (k1 - k2), 2);
+    double y = Math.Round(k1 * x + b1, 2);
+    Console.Write($"Lines of both functions y={k1}x+{b1} and y={k2}x+{b2} cross at point (x={x}, y={y}).");
 }
-//задаем систему координат
 
-void MakeCoordinate(int From, int To)
-{
-    Console.Clear();
-    for (int i = 0; i <= 20; i++)
-    {
-        Console.SetCursorPosition(i + From, To);
-        Console.Write("|");
-    }
-
-    for (int j = 0; j <= 20; j++)
-    {
-        Console.SetCursorPosition(From, j + To);
-        Console.Write("-");
-    }
-
-}
-/*
-
-
+IntersectionPoint(5, 2, 9, 4);
 */
-
-MakeCoordinate(10, 10);
-
-//IntersectionPoint(5, 2, 9, 4);
-
