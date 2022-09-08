@@ -20,13 +20,19 @@ PositiveCalc();
 
 //Задача 43: Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
 //b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; -0,5)
-/*
+
 void IntersectionPoint(double k1, double b1, double k2, double b2)
 {
-    double x = Math.Round((b2 - b1) / (k1 - k2), 2);
-    double y = Math.Round(k1 * x + b1, 2);
-    Console.Write($"Lines of both functions y={k1}x+{b1} and y={k2}x+{b2} cross at point (x={x}, y={y}).");
+    if (k1 == k2 && b1 == b2) Console.WriteLine($"Lines of both functions y={k1}x+{b1} and y={k2}x+{b2} match and do not cross.");
+    else 
+        if (k1 == k2) Console.WriteLine($"Lines of both functions y={k1}x+{b1} and y={k2}x+{b2} parallel and do not cross.");
+        else 
+        {
+            double x = Math.Round((b2 - b1) / (k1 - k2), 2);
+            double y = Math.Round(k1 * x + b1, 2);
+            Console.Write($"Lines of both functions y={k1}x+{b1} and y={k2}x+{b2} cross at point (x={x}, y={y}).");
+        }
 }
 
-IntersectionPoint(5, 2, 9, 4);
-*/
+IntersectionPoint(9, 2, 9, 2);
+
