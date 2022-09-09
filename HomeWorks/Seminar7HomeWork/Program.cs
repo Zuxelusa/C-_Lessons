@@ -57,7 +57,7 @@ void Show2dArray(int[,] array, bool needAlign)
     Console.WriteLine();
 }
 
-//Метод для вывода 1D матрицы
+// Метод для вывода 1D матрицы
 void PrintArray(double[] arr)
 {
     string str = " | ";
@@ -83,14 +83,7 @@ bool isElementAddress(int[,] array, int row, int col)
     else return false;
 }
 
-// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
-// m = 3, n = 4.
-// 0,5 7 -2 -0,2
-// 1 -3,3 8 -9,9
-// 8 7,8 -7,1 9
-
 // Метод, генерирующий 2 мерный массив вещественных чисел, использует метод GenerateRandomDouble
-/*
 double[,] CreateRandom2dArrayInDouble(int roundValue)
 {
     Console.Write("Input numbers of rows: ");
@@ -110,6 +103,28 @@ double[,] CreateRandom2dArrayInDouble(int roundValue)
     return array;
 }
 
+// Метод, который выводит среднее арифметическое по столбцам 2D массива
+double[] AverageForColumns2dArray(int[,] array, int roundParam)
+{
+    double[] arr = new double[array.GetLength(1)];
+    double sum;
+    for (int i = 0; i < array.GetLength(1); i++)
+    {
+        sum = 0;
+        for (int j = 0; j < array.GetLength(0); j++)
+            sum += array[j, i];
+        arr[i] = Math.Round(sum / array.GetLength(0), roundParam);
+    }
+    return arr;
+}
+
+/*
+// Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+// m = 3, n = 4.
+// 0,5 7 -2 -0,2
+// 1 -3,3 8 -9,9
+// 8 7,8 -7,1 9
+
 Console.Clear();
 Console.WriteLine("-----PROGRAM FOR 2D ARRAY OUTPUT (IN DOUBLE DATA TYPE)-----");
 Console.WriteLine();
@@ -122,6 +137,7 @@ Show2dArray(CreateRandom2dArrayInDouble(4), true);
 // 5 9 2 3
 // 8 4 2 4
 // 17 -> такого числа в массиве нет
+
 /*
 // Запрос данных
 Console.Clear();
@@ -146,21 +162,8 @@ else Console.WriteLine($"There is no element with address ({row},{column}) in 2D
 // 5 9 2 3
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
-/*
-double[] AverageForColumns2dArray(int[,] array, int roundParam)
-{
-    double[] arr = new double[array.GetLength(1)];
-    double sum;
-    for (int i = 0; i < array.GetLength(1); i++)
-    {
-        sum = 0;
-        for (int j = 0; j < array.GetLength(0); j++)
-            sum += array[j, i];
-        arr[i] = Math.Round(sum / array.GetLength(0), roundParam);
-    }
-    return arr;
-}
 
+/*
 Console.Clear();
 Console.WriteLine("-----PROGRAM FOR CALCULATING AVERAGE BY COLUMNS IN 2D ARRAY-----");
 Console.WriteLine();
