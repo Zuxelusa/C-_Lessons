@@ -1,6 +1,4 @@
-﻿
-
-// Метод вызывающий дублирование строкового элемента, указанное количество раз.
+﻿// Метод вызывающий дублирование строкового элемента, указанное количество раз.
 string RepeatString(string text, int q)
 {
     string str = String.Empty;
@@ -10,6 +8,36 @@ string RepeatString(string text, int q)
 
 // Метод для вывода матрицы 2 мерного массива c возможностью выбора параметра выравнивания выводимой матрицы
 void Show2dArray(int[,] array, bool needAlign)
+//void Show2dArray(double[,] array, bool needAlign)
+{
+    int lengthOfMax = 0;
+    string curCell = String.Empty;
+    if (needAlign)
+    {
+        // Цикл, который определяет самую длинную строку в массиве
+        for (int i = 0; i < array.GetLength(0); i++)
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                string current = Convert.ToString(array[i, j]);
+                if (current.Length > lengthOfMax) lengthOfMax = current.Length;
+            }
+    }
+
+    // Цикл, выводящий массив
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (needAlign) curCell = Convert.ToString(array[i, j]);
+            // Console.Write(array[i, j] + RepeatString(" ", lengthOfMax - curCell.Length + 1));
+            Console.Write(RepeatString(" ", lengthOfMax - curCell.Length + 1) + array[i, j]);
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+
+void Show2dArrayString(string[,] array, bool needAlign)
 //void Show2dArray(double[,] array, bool needAlign)
 {
     int lengthOfMax = 0;
@@ -58,6 +86,91 @@ int[,] CreateRandom2dArray()
             newArray[i, j] = new Random().Next(minValue, maxValue + 1);
 
     return newArray;
+}
+
+// Метод для создания 3-х мерного массива случайных чисел с запросом размерности и параметра уникальности элементов. 
+// При недостаточности места для генерируемых чисел выводится пустой массив
+int[,,] CreateRandom3dArray(bool unique)
+{
+    Console.Write("Input numbers of rows: ");
+    int rows = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Input numbers of columns: ");
+    int columns = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Input numbers of columns: ");
+    int depths = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Input min possible value: ");
+    int minValue = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Input max possible value: ");
+    int maxValue = Convert.ToInt32(Console.ReadLine());
+
+    int[,,] newArray = new int[rows, columns, depths];
+
+    if ((unique) && (rows * columns * depths > maxValue - minValue - 1)) return newArray;
+    else
+    {
+        int temp = 0;
+        for (int i = 0; i < rows; i++)
+            for (int j = 0; j < columns; j++)
+                for (int k = 0; k < depths; k++)
+                {
+                    if (unique)
+                    {
+                        do temp = new Random().Next(minValue, maxValue + 1);
+                        while (isFoundIn3dArray(newArray, temp) != false);
+                        newArray[i, j, k] = temp;
+                    }
+                    else newArray[i, j, k] = new Random().Next(minValue, maxValue + 1);
+                }
+    }
+    return newArray;
+}
+
+// Метод добавляет в 3d массиве к элементам их адреса
+string[,,] AddIndexesTo3dArrayElements(int[,,] array)
+{
+    string[,,] strArray = new string[array.GetLength(0), array.GetLength(2), array.GetLength(2)];
+    for (int i = 0; i < array.GetLength(0); i++)
+        for (int j = 0; j < array.GetLength(1); j++)
+            for (int k = 0; k < array.GetLength(2); k++)
+                strArray[i, j, k] = array[i, j, k] + $"({i},{j},{k})";
+    return strArray;
+}
+
+// Метод, проверяющий наличие проверяемого элемента в 3d массиве
+bool isFoundIn3dArray(int[,,] array, int N)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+        for (int j = 0; j < array.GetLength(1); j++)
+            for (int k = 0; k < array.GetLength(2); k++)
+                if (array[i, j, k] == N) return true;
+    return false;
+}
+
+//Метод вывода 3d массива в виде последовательных 2d массивов
+void Show3dArray(int[,,] array)
+{
+    for (int k = 0; k < array.GetLength(2); k++)
+    {
+        int[,] tempLayer = new int[array.GetLength(0), array.GetLength(1)];
+        for (int i = 0; i < array.GetLength(0); i++)
+            for (int j = 0; j < array.GetLength(1); j++)
+                tempLayer[i, j] = array[i, j, k];
+        Show2dArray(tempLayer, true);
+        Console.WriteLine();
+    }
+}
+
+void Show3dArrayString(string[,,] array)
+{
+    for (int k = 0; k < array.GetLength(2); k++)
+    {
+        string[,] tempLayer = new string[array.GetLength(0), array.GetLength(1)];
+        for (int i = 0; i < array.GetLength(0); i++)
+            for (int j = 0; j < array.GetLength(1); j++)
+                tempLayer[i, j] = array[i, j, k];
+        Show2dArrayString(tempLayer, true);
+        Console.WriteLine();
+    }
 }
 
 // Метод сортировки 1D массива c параметром sortBy типа bool, true - сортировка по возрастанию, false - сортировка по убыванию.
@@ -110,6 +223,28 @@ void IndexMinSumRow(int[,] array)
     Console.WriteLine($"Номер строки {min} с минимальной суммой {minSum}.");
 }
 
+// Метод, производящий умножение двух матриц
+int[,] Arrays2dMultiplication(int[,] array1, int[,] array2)
+{
+    int[,] resultArray = new int[array1.GetLength(0), array2.GetLength(1)];
+    if (array1.GetLength(1) == array2.GetLength(0))
+    {
+        for (int i = 0; i < resultArray.GetLength(0); i++)
+            for (int j = 0; j < resultArray.GetLength(1); j++)
+            {
+                int currentSum = 0;
+                for (int k = 0; k < array2.GetLength(0); k++)
+                    currentSum += array1[i, k] * array2[k, j];
+                resultArray[i, j] = currentSum;
+            }
+        return resultArray;
+    }
+    else return resultArray;
+}
+
+//------------------------------------------------------------------
+
+
 // Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
 // Например, задан массив:
 // 1 4 7 2
@@ -149,40 +284,7 @@ Console.WriteLine();
 // Результирующая матрица будет:
 // 18 20
 // 15 18
-
-int[,] Arrays2dMultiplication(int[,] array1, int[,] array2)
-{
-    int rowsArray1 = array1.GetLength(0);
-    int columnsArray1 = array1.GetLength(1);
-    int rowsArray2 = array2.GetLength(0);
-    int columnsArray2 = array2.GetLength(1);
-
-    if (columnsArray1 == rowsArray2)
-    {
-        int[,] resultArray = new int[columnsArray2, rowsArray1];
-        Show2dArray(array1, true);
-        Show2dArray(array2, true);
-
-        //проходим по строкам результирующей матрицы
-        for (int i = 0; i < rowsArray1; i++)
-            //проходим по столбцам результирующей матрицы
-            for (int j = 0; j < columnsArray2; j++)
-            {
-                //накапливаем новую сумму на каждом элементе нового массива, количество слагаемых ровно количеству столбцов
-                int currentSum = 0;
-                for (int k = 0; k < columnsArray1; k++)
-                {
-                    // сумма накапливается от произведений элементов 1 массива, шагая по столбцам (вправо), и элементов 2 массива, шагая по рядам (вниз)
-                    currentSum += array1[i, k] * array2[k, j];
-                    Console.WriteLine($"Строки: {i} Столбцы: {j} Слагаемых: {k} Сумма: {currentSum}");
-                }
-                resultArray[i, j] = currentSum;
-            }
-        return resultArray;
-    }
-    else return null;
-}
-
+/*
 int[,] arr = CreateRandom2dArray();
 int[,] arr2 = CreateRandom2dArray();
 int[,] resultArray = Arrays2dMultiplication(arr, arr2);
@@ -190,6 +292,7 @@ Show2dArray(arr, true);
 Show2dArray(arr2, true);
 Show2dArray(resultArray, true);
 Console.WriteLine();
+*/
 
 // Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
@@ -197,9 +300,12 @@ Console.WriteLine();
 // 34(1,0,0) 41(1,1,0)
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
-
-
-
+/*
+int[,,] array = CreateRandom3dArray(true);
+Console.WriteLine();
+Show3dArray(array);
+Show3dArrayString(AddIndexesTo3dArrayElements(array));
+*/
 
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
@@ -207,3 +313,18 @@ Console.WriteLine();
 // 12 13 14 05
 // 11 16 15 06
 // 10 09 08 07
+
+int[,] arr = new int[3, 3];
+int step = 1;
+for (int i = 0; i < arr.GetLength(0)/2; i++)
+{
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+        arr[i,j] = step;
+    }
+}
+
+
+
+
+Show2dArray(arr, true);
