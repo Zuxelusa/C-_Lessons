@@ -367,7 +367,9 @@ Show2dArray(CreateSpiralArray(20, 15, -50), true);
 */
 
 //Задача с классной работы. транспонирование через главную диагональ
+/*
 int[,] array = CreateRandom2dArray();
 Show2dArray(array, true);
 Console.WriteLine();
-Show2dArray(TransponArrayThroughDiagonal(array, true));
+Show2dArray(TransponArrayThroughDiagonal(array), true);
+*/
