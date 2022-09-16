@@ -242,6 +242,15 @@ int[,] Arrays2dMultiplication(int[,] array1, int[,] array2)
     else return resultArray;
 }
 
+// Метод, производящий транспонирование массива через диагональ
+int[,] TransponArrayThroughDiagonal(int[,] array)
+{
+    int[,] newArray = new int[array.GetLength(1), array.GetLength(0)];
+    for (int i = 0; i < array.GetLength(0); i++)
+        for (int j = 0; j < array.GetLength(1); j++)
+            newArray[j, i] = array[i, j];
+    return newArray;
+}
 //------------------------------------------------------------------
 
 
@@ -314,17 +323,16 @@ Show3dArrayString(AddIndexesTo3dArrayElements(array));
 // 11 16 15 06
 // 10 09 08 07
 
-int[,] arr = new int[3, 3];
-int step = 1;
-for (int i = 0; i < arr.GetLength(0)/2; i++)
-{
-    for (int j = 0; j < arr.GetLength(1); j++)
-    {
-        arr[i,j] = step;
-    }
-}
+/*
+Show2dArray(CreateSpiralArray(20, 15, -50), true);
+*/
 
+//Задача с классной работы. Транспонирование массива через диагональ
 
+int[,] array = CreateRandom2dArray();
 
+Show2dArray(array, true);
+Console.WriteLine();
 
-Show2dArray(arr, true);
+//Show2dArray(TransponArray(array));
+Show2dArray(TransponArrayThroughDiagonal(array), true);
