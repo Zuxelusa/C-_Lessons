@@ -31,21 +31,15 @@ Console.Write($"{FindSumBetween(1, 5)}");
 // Задача 68: Напишите программу вычисления функции Аккермана с помощью рекурсии. Даны два неотрицательных числа m и n.
 // m = 2, n = 3 -> A(m,n) = 29
 
-int AnkermanFunc(int m, int n)
+Int64 AkkermanFunc(Int64 m, Int64 n)
 {
-    
-    if (m > 0 && n > 0)
+    if (m == 0) return n + 1;
+    if (m > 0)
     {
-
+        if (n == 0) return AkkermanFunc(m - 1, 1);
+        return AkkermanFunc(m - 1, AkkermanFunc(m, n - 1));
     }
-    if (m = 0)
-    {
-
-    }
-    if (m > 0 && n == 0)
-    {
-
-    }
+    return 0;
 }
 
-
+Console.Write(AkkermanFunc(3, 2));
